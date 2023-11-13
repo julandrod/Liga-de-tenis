@@ -1,11 +1,8 @@
 import axios from "axios";
-import { headers } from "../../next.config";
-
-const baseUrl = "http://localhost:5000/api/v1";
 
 export const registerUser = async ({ name, lastName, email, password }) => {
   try {
-    const { data } = await axios.post(`${baseUrl}/auth/register`, {
+    const { data } = await axios.post(`${process.env.API_URL}/auth/register`, {
       name,
       lastName,
       email,
@@ -19,7 +16,7 @@ export const registerUser = async ({ name, lastName, email, password }) => {
 
 export const fetchMyInfo = async ({ accessToken }) => {
   try {
-    const { data } = await axios.get(`${baseUrl}/auth/showme`, {
+    const { data } = await axios.get(`${process.env.API_URL}/auth/showme`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -42,7 +39,7 @@ export const fetchUpdateUser = async ({
 }) => {
   try {
     const { data } = await axios.put(
-      `${baseUrl}/users/${id}`,
+      `${process.env.API_URL}/users/${id}`,
       {
         name,
         lastName,
@@ -65,7 +62,7 @@ export const fetchUpdateUser = async ({
 
 export const fetchUsers = async ({ accessToken, page }) => {
   try {
-    const { data } = await axios.get(`${baseUrl}/users?page=${page}`, {
+    const { data } = await axios.get(`${process.env.API_URL}/users?page=${page}`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -79,7 +76,7 @@ export const fetchUsers = async ({ accessToken, page }) => {
 
 export const fetchSingleUser = async ({ accessToken, id }) => {
   try {
-    const { data } = await axios.get(`${baseUrl}/users/${id}`, {
+    const { data } = await axios.get(`${process.env.API_URL}/users/${id}`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -93,7 +90,7 @@ export const fetchSingleUser = async ({ accessToken, id }) => {
 
 export const fetchDeleteUser = async ({ accessToken, id }) => {
   try {
-    const { data } = await axios.delete(`${baseUrl}/users/${id}`, {
+    const { data } = await axios.delete(`${process.env.API_URL}/users/${id}`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -107,7 +104,7 @@ export const fetchDeleteUser = async ({ accessToken, id }) => {
 
 export const fetchTournaments = async ({ accessToken, page }) => {
   try {
-    const { data } = await axios.get(`${baseUrl}/tournaments?page=${page}`, {
+    const { data } = await axios.get(`${process.env.API_URL}/tournaments?page=${page}`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -128,7 +125,7 @@ export const fetchCreateTournament = async ({
 }) => {
   try {
     const { data } = await axios.post(
-      `${baseUrl}/tournaments`,
+      `${process.env.API_URL}/tournaments`,
       {
         name,
         description,
@@ -154,7 +151,7 @@ export const fetchDeleteTournament = async ({
 }) => {
   try {
     const { data } = await axios.delete(
-      `${baseUrl}/tournaments/${id}`,
+      `${process.env.API_URL}/tournaments/${id}`,
       {
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -170,7 +167,7 @@ export const fetchDeleteTournament = async ({
 
 export const fetchSingleTournament = async ({ accessToken, id }) => {
   try {
-    const { data } = await axios.get(`${baseUrl}/tournaments/${id}`, {
+    const { data } = await axios.get(`${process.env.API_URL}/tournaments/${id}`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -189,7 +186,7 @@ export const fetchAddPlayerToTournament = async ({
 }) => {
   try {
     const { data } = await axios.post(
-      `${baseUrl}/tournaments/addplayer/${id}`,
+      `${process.env.API_URL}/tournaments/addplayer/${id}`,
       {
         playerId,
       },

@@ -9,7 +9,7 @@ const TournamentsContainer = ({
   pageSize,
   isMyProfile,
 }) => {
-  if (tournaments.length === 0) {
+  if (tournaments?.length === 0) {
     return (
       <div className="px-8 py-3 mx-6 my-2 text-2xl font-bold">
         <h1>No hay torneos registrados aun </h1>
