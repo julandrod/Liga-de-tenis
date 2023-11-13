@@ -8,6 +8,16 @@
 ) ![image](https://img.shields.io/badge/YUP-666766?style=for-the-badge
 )
 
+## Environment Variables
+
+Para ejecutar este proyecto se necesitan las siguientes variables que se deben agregar al archivo .env
+
+`NEXTAUTH_URL`: url en la que corre el frontend, solo se usa en local
+
+`NEXTAUTH_SECRET`: palabra secreta que usa Next-Auth para la gestion de sessiones
+
+`API_URL`: url en la que corre la API de nuestro backend
+
 ## 💻 Ejecutar localmente
 
 Clonar el proyecto
