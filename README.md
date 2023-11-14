@@ -16,6 +16,10 @@ MVP full stack que permite tener 2 tipos de usuarios (jugadores y admin), permit
 ) ![image](https://img.shields.io/badge/YUP-666766?style=for-the-badge
 )
 
+## 📃 Documentacion Frontend
+
+[🔗 Documentation](https://github.com/julandrod/liga-de-tenis/blob/main/frontend/README.md)
+
 **Server:** 
 
 ![image](https://img.shields.io/badge/Node%20js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white
@@ -24,4 +28,6 @@ MVP full stack que permite tener 2 tipos de usuarios (jugadores y admin), permit
 ) ![image](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white
 ) ![image](https://img.shields.io/badge/Express%20Validator-666766?style=for-the-badge)
 
+## 📃 Documentacion Backend
 
+[🔗 Documentation](https://github.com/julandrod/liga-de-tenis/blob/main/backend/README.md)
