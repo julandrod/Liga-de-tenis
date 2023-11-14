@@ -9,14 +9,18 @@ MVP full stack que permite tener 2 tipos de usuarios (jugadores y admin), permit
 
 ## 🛠 Tech Stack
 
-**Client:**
+##Frontend:
 
 ![image](https://img.shields.io/badge/next%20js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white) ![image](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB) ![image](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white
 ) ![image](https://img.shields.io/badge/Formik-666766?style=for-the-badge
 ) ![image](https://img.shields.io/badge/YUP-666766?style=for-the-badge
 )
 
-**Server:** 
+## 📃 Documentacion Frontend
+
+[🔗 Documentation](https://github.com/julandrod/liga-de-tenis/blob/main/frontend/README.md)
+
+##Backend: 
 
 ![image](https://img.shields.io/badge/Node%20js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white
 ) ![image](https://img.shields.io/badge/Express%20js-000000?style=for-the-badge&logo=express&logoColor=white
@@ -24,4 +28,6 @@ MVP full stack que permite tener 2 tipos de usuarios (jugadores y admin), permit
 ) ![image](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white
 ) ![image](https://img.shields.io/badge/Express%20Validator-666766?style=for-the-badge)
 
+## 📃 Documentacion Backend
 
+[🔗 Documentation](https://github.com/julandrod/liga-de-tenis/blob/main/backend/README.md)
