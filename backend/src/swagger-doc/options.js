@@ -17,7 +17,7 @@ const options = {
     },
     servers: [
       {
-        url: `http://localhost:5000/`,
+        url: `https://ligadetenis.onrender.com/api/v1`,
       },
     ],
     securityDefinitions: {
@@ -33,7 +33,7 @@ const options = {
       },
     ],
   },
-  apis: ["./src/routes/*.js"],
+  apis: ["./src/routes/docs.yaml"],
 };
 
 module.exports = options;

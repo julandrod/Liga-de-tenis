@@ -23,12 +23,8 @@ Para ejecutar este proyecto se necesitan las siguientes variables que se deben a
 ## Swagger Documentation
 
 ![image](https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=Swagger&logoColor=white)
-📄 [Documentation]()
+📄 [Documentation](https://ligadetenis.onrender.com/api-docs/)
 
-## Postman Documentation
-
-![image](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=Postman&logoColor=white)
-📄 [Documentation]()
 
 ## Ejecutar localmente
 

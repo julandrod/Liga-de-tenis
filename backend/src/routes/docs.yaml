@@ -1,0 +1,368 @@
+tags:
+  - name: Auth
+  - name: Users
+  - name: Tournaments
+  - name: History
+paths:
+  /auth/login:
+    post:
+      tags:
+        - Auth
+      summary: Login user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: admin@mail.com
+                password: '123456'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /auth/register:
+    post:
+      tags:
+        - Auth
+      summary: Register a new user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: pedro
+                lastName: fernandez
+                email: pedro@mail.com
+                password: '123456'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /auth/showme:
+    get:
+      tags:
+        - Auth
+      summary: Show info of the active user
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /users:
+    get:
+      tags:
+        - Users
+      summary: Get all users
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+          example: '1'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /users/{userId}:
+    get:
+      tags:
+        - Users
+      summary: Get user by id
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - Users
+      summary: Update user by id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: pepe
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Users
+      summary: Delete user by id
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /users/resetpassword/{userId}:
+    put:
+      tags:
+        - Users
+      summary: Reset user password
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                oldPassword: '1234'
+                newPassword: '123456'
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /tournaments:
+    get:
+      tags:
+        - Tournaments
+      summary: Get all tournaments
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+          example: '1'
+        - name: query
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Tournaments
+      summary: Create tournament
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: torneo infantil
+                description: torneo infantil femenino
+                startDate: '2023-01-01T00:00:00.000Z'
+                endDate: '2023-01-05T00:00:00.000Z'
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /tournaments/{tournamentId}:
+    get:
+      tags:
+        - Tournaments
+      summary: Get tournament by id
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+        - Tournaments
+      summary: Get tournament by id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: torneo infantil regional
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Tournaments
+      summary: Delete tournament by id
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /tournaments/addplayer/{tournamentId}:
+    post:
+      tags:
+        - Tournaments
+      summary: Add player to tournament
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                playerId: 95f8fa4e-7bbb-43de-8632-314d178a2056
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /tournaments/removeplayer/{tournamentId}:
+    post:
+      tags:
+        - Tournaments
+      summary: Remove player to tournament
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                playerId: 95f8fa4e-7bbb-43de-8632-314d178a2056
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /history/add:
+    post:
+      tags:
+        - History
+      summary: Add new player entry history
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                playerId: eae93bd6-2a6c-4b51-87a8-d2d28aa7c441
+                tournamentId: 74a6a336-5213-4872-b672-0acab70a56d7
+                points: 10
+                position: 3
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+components:
+  schemas:
+    Users:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique user id.
+          example: cfa0d3f5-b4ad-4481-8478-c4445c40418b
+        name:
+          type: string
+          description: user first name
+          example: John
+        lastName:
+          type: string
+          description: user last name
+          example: Smith
+        age: 
+          type: integer
+          description: age of the user
+          example: 21
+        gender: 
+          type: string
+          enum: [MALE, FEMALE]
+          description: user gender
+          example: MALE
+        email: 
+          type: string
+          description: user email
+          example: user@mail.com
+        password: 
+          type: string
+          description: Mensaje que se le envia al barbero al momento de solicitar el turno
+        role: 
+          type: string
+          enum: [ADMIN, PLAYER]
+          description: user role
+          example: PLAYER
+        createdTournaments: 
+          type: array
+          properties:
+            id: 
+              type: string
+              format: uuid
+          description: id's of the created tournaments
+        participatingTournaments: 
+          type: array
+          properties:
+            id: 
+              type: string
+              format: uuid
+          description: id's of the participating tournaments
+    Tournaments:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique tournament id.
+          example: cfa0d3f5-b4ad-4481-8478-c4445c40418b
+        name:
+          type: string
+          description: tournament name
+          example: Tournament amateur
+        description:
+          type: string
+          description: tournament description
+          example: tournament for amateur players
+        startDate:
+          type: date
+          description: tournament initial date in ISO format
+          example: 2023-01-01T00:00:00.000Z
+        endDate:
+          type: date
+          description: tournament end date in ISO format
+          example: 2023-01-05T00:00:00.000Z
+        creator: 
+          type: string
+          format: uuid
+          description: Unique id of the tournamente creator. 
+          example: cfa0d3f5-b4ad-4481-8478-c4445c40418b
+        players: 
+          type: array
+          properties:
+            id: 
+              type: string
+              format: uuid
+          description: id's of the tournament players
