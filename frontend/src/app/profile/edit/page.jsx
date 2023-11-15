@@ -39,6 +39,7 @@ const EditProfilePage = ({ searchParams }) => {
         text: res,
       });
     }
+    actions.resetForm();
   };
 
   return (

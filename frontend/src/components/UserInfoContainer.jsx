@@ -65,7 +65,7 @@ const UserInfoContainer = ({
         ) : (
           <>
             <ButtonLink link="/users" text="Volver" />
-            <ButtonLink link="/users" text="Ver torneos" />
+            <ButtonLink link="/tournaments" text="Ver torneos" />
             <InteractiveButton
               text="Eliminar"
               userId={id}

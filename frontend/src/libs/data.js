@@ -1,8 +1,12 @@
 import axios from "axios";
 
+const instance = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
+});
+
 export const registerUser = async ({ name, lastName, email, password }) => {
   try {
-    const { data } = await axios.post(`${process.env.API_URL}/auth/register`, {
+    const { data } = await instance.post("/auth/register", {
       name,
       lastName,
       email,
@@ -16,7 +20,7 @@ export const registerUser = async ({ name, lastName, email, password }) => {
 
 export const fetchMyInfo = async ({ accessToken }) => {
   try {
-    const { data } = await axios.get(`${process.env.API_URL}/auth/showme`, {
+    const { data } = await instance.get("/auth/showme", {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -38,8 +42,8 @@ export const fetchUpdateUser = async ({
   email,
 }) => {
   try {
-    const { data } = await axios.put(
-      `${process.env.API_URL}/users/${id}`,
+    const { data } = await instance.put(
+      `/users/${id}`,
       {
         name,
         lastName,
@@ -62,7 +66,7 @@ export const fetchUpdateUser = async ({
 
 export const fetchUsers = async ({ accessToken, page }) => {
   try {
-    const { data } = await axios.get(`${process.env.API_URL}/users?page=${page}`, {
+    const { data } = await instance.get(`/users?page=${page}`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -76,7 +80,7 @@ export const fetchUsers = async ({ accessToken, page }) => {
 
 export const fetchSingleUser = async ({ accessToken, id }) => {
   try {
-    const { data } = await axios.get(`${process.env.API_URL}/users/${id}`, {
+    const { data } = await instance.get(`/users/${id}`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -90,7 +94,7 @@ export const fetchSingleUser = async ({ accessToken, id }) => {
 
 export const fetchDeleteUser = async ({ accessToken, id }) => {
   try {
-    const { data } = await axios.delete(`${process.env.API_URL}/users/${id}`, {
+    const { data } = await instance.delete(`/users/${id}`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -104,7 +108,7 @@ export const fetchDeleteUser = async ({ accessToken, id }) => {
 
 export const fetchTournaments = async ({ accessToken, page }) => {
   try {
-    const { data } = await axios.get(`${process.env.API_URL}/tournaments?page=${page}`, {
+    const { data } = await instance.get(`/tournaments?page=${page}`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -124,8 +128,8 @@ export const fetchCreateTournament = async ({
   endDate,
 }) => {
   try {
-    const { data } = await axios.post(
-      `${process.env.API_URL}/tournaments`,
+    const { data } = await instance.post(
+      "/tournaments",
       {
         name,
         description,
@@ -145,19 +149,13 @@ export const fetchCreateTournament = async ({
   }
 };
 
-export const fetchDeleteTournament = async ({
-  accessToken,
-  id
-}) => {
+export const fetchDeleteTournament = async ({ accessToken, id }) => {
   try {
-    const { data } = await axios.delete(
-      `${process.env.API_URL}/tournaments/${id}`,
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      }
-    );
+    const { data } = await instance.delete(`/tournaments/${id}`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
 
     return data.code;
   } catch (error) {
@@ -167,7 +165,7 @@ export const fetchDeleteTournament = async ({
 
 export const fetchSingleTournament = async ({ accessToken, id }) => {
   try {
-    const { data } = await axios.get(`${process.env.API_URL}/tournaments/${id}`, {
+    const { data } = await instance.get(`/tournaments/${id}`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -185,8 +183,8 @@ export const fetchAddPlayerToTournament = async ({
   playerId,
 }) => {
   try {
-    const { data } = await axios.post(
-      `${process.env.API_URL}/tournaments/addplayer/${id}`,
+    const { data } = await instance.post(
+      `/tournaments/addplayer/${id}`,
       {
         playerId,
       },

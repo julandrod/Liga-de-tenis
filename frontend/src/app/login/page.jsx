@@ -34,11 +34,7 @@ const LoginPage = () => {
         text: "Ahora puedes volver a la pagina principal",
         allowEscapeKey: false,
         allowOutsideClick: false,
-      }).then((result) => {
-        if (result.isConfirmed) {
-          return router.push("/");
-        }
-      });
+      })
     }
     actions.resetForm();
   };
@@ -48,7 +44,7 @@ const LoginPage = () => {
   }
 
   if (data?.user) {
-    return router.push("/");
+    return router.replace("/");
   }
 
   return (

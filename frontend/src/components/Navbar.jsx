@@ -1,11 +1,11 @@
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import { getServerSession } from "next-auth";
+"use client";
+// import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+// import { getServerSession } from "next-auth";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
-import React from "react";
 
-const Navbar = async () => {
-  const session = await getServerSession(authOptions);
-  const role = session?.user.role;
+const Navbar = () => {
+  const { data, status } = useSession();
 
   return (
     <nav className="p-4 bg-bg-secondary font-bold">
@@ -15,14 +15,13 @@ const Navbar = async () => {
         </Link>
 
         <ul className="flex gap-x-2">
-          {session ? (
+          {data?.user ? (
             <>
-              {role === "ADMIN" ? (
+              {data?.user.role === "ADMIN" ? (
                 <li className="px-3 py-1 hover:animate-bounce">
                   <Link href="/users">Usuarios</Link>
                 </li>
               ) : null}
-
               <li className="px-3 py-1 hover:animate-bounce">
                 <Link href="/tournaments">Torneos</Link>
               </li>
