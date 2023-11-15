@@ -5,7 +5,7 @@ MVP full stack que permite tener 2 tipos de usuarios (jugadores y admin), permit
 
 ## 💻 Demo
 
-[🔗 Link to webiste](https://liga-de-tenis-q9xm33f3e-julandrod.vercel.app/)
+[🔗 Link to webiste](https://liga-de-tenis.vercel.app/)
 
 ## 🛠 Tech Stack
 
