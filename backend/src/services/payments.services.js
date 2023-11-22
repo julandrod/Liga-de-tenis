@@ -24,7 +24,7 @@ const findAllPayments = async ({ pageNumber, query }) => {
       skip,
       take,
       orderBy: {
-        createdAt: "asc",
+        createdAt: "desc",
       },
     });
 
