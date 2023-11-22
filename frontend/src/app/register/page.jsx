@@ -1,12 +1,12 @@
 "use client";
 
+import { alertMessage } from "@/components/AlertMessage";
 import InputForm from "@/components/InputForm";
 import { registerUser } from "@/libs/data";
 import { registerSchema } from "@/libs/validateSchemas";
 import { Form, Formik } from "formik";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import Swal from "sweetalert2";
 
 const RegisterPage = () => {
   const router = useRouter();
@@ -19,25 +19,17 @@ const RegisterPage = () => {
       password: values.password,
     });
 
-    if (res === 201) {
-      Swal.fire({
-        icon: "success",
-        title: "Registro exitoso!",
-        text: "Ahora puedes ingresar con tus datos",
-        allowEscapeKey: false,
-        allowOutsideClick: false,
-      }).then((result) => {
-        if (result.isConfirmed) {
-          return router.push("/login");
-        }
-      });
-    } else {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: res,
-      });
+    const successResponse = await alertMessage({
+      title: "Registro Exitoso!",
+      text: "Ahora puedes ingresar con tus datos",
+      response: res,
+      code: 201,
+    });
+
+    if (successResponse) {
+      router.push("/login");
     }
+
     actions.resetForm();
   };
 
@@ -96,7 +88,7 @@ const RegisterPage = () => {
                     className="mt-2 text-white bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-2 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2"
                     disabled={props.isSubmitting}
                   >
-                    Ingresa
+                    Registrarse
                   </button>
                 </div>
                 <div className="flex items-center justify-between pb-2">

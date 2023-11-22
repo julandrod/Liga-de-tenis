@@ -1,22 +1,19 @@
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import ButtonLink from "@/components/ButtonLink";
+import PaymentsContainer from "@/components/PaymentsContainer";
 import { fetchInfo } from "@/libs/data";
 import { getServerSession } from "next-auth";
-import { authOptions } from "../api/auth/[...nextauth]/route";
-import ButtonLink from "@/components/ButtonLink";
-import UsersContainer from "@/components/UsersContainer";
+clear
 
-const UsersPage = async ({ searchParams }) => {
+const PaymentsPage = async ({ searchParams }) => {
   const page = searchParams?.page || 1;
   const session = await getServerSession(authOptions);
   const accessToken = session?.user.token;
   const role = session?.user.role;
 
   const {
-    body: { users, pageSize, totalCount },
-  } = await fetchInfo({
-    accessToken,
-    page,
-    endpoint: "users",
-  });
+    body: { payments, pageSize, totalCount },
+  } = await fetchInfo({ accessToken, page, endpoint: "payments" });
 
   if (role === "PLAYER") {
     return (
@@ -28,13 +25,13 @@ const UsersPage = async ({ searchParams }) => {
   }
 
   return (
-    <UsersContainer
-      title="Usuarios"
-      users={users}
+    <PaymentsContainer
+      title="Pagos"
+      payments={payments}
       totalCount={totalCount}
       pageSize={pageSize}
     />
   );
 };
 
-export default UsersPage;
+export default PaymentsPage;

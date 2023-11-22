@@ -1,9 +1,6 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import ButtonLink from "@/components/ButtonLink";
-import InfoContainer from "@/components/InfoContainer";
 import TournamentInfoContainer from "@/components/TournamentInfoContainer";
-import { fetchSingleTournament } from "@/libs/data";
-import formatDate from "@/libs/formatDate";
+import { fetchSingleInfo } from "@/libs/data";
 import { getServerSession } from "next-auth";
 
 const SingleTournamentPage = async ({ params }) => {
@@ -11,9 +8,12 @@ const SingleTournamentPage = async ({ params }) => {
   const session = await getServerSession(authOptions);
   const accessToken = session?.user.token;
   const role = session?.user.role;
-  const { tournament } = await fetchSingleTournament({
+  const {
+    body: { tournament },
+  } = await fetchSingleInfo({
     accessToken,
     id,
+    endpoint: "tournaments",
   });
   const {
     id: tournamentId,

@@ -1,5 +1,5 @@
 import { getServerSession } from "next-auth";
-import { fetchSingleUser } from "@/libs/data";
+import { fetchSingleInfo } from "@/libs/data";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import UserInfoContainer from "@/components/UserInfoContainer";
 
@@ -8,19 +8,20 @@ const SingleUserPage = async ({ params }) => {
   const session = await getServerSession(authOptions);
   const accessToken = session?.user.token;
 
-  const { user } = await fetchSingleUser({ accessToken, id });
-  const { id: userId, name, lastName, email, age, gender } = user;
+  const {
+    body: { user },
+  } = await fetchSingleInfo({ accessToken, id, endpoint: "users" });
 
   return (
     <UserInfoContainer
       title="Informacion del usuario"
-      id={userId}
+      id={user.id}
       accessToken={accessToken}
-      name={name}
-      lastName={lastName}
-      email={email}
-      age={age}
-      gender={gender}
+      name={user.name}
+      lastName={user.lastName}
+      email={user.email}
+      age={user.age}
+      gender={user.gender}
     />
   );
 };

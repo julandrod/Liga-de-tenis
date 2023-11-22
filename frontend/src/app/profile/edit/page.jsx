@@ -1,16 +1,16 @@
 "use client";
+import { alertMessage } from "@/components/AlertMessage";
 import InputForm from "@/components/InputForm";
-import { fetchUpdateUser } from "@/libs/data";
+import { updateUser } from "@/libs/data";
 import { registerSchema } from "@/libs/validateSchemas";
 import { Field, Form, Formik } from "formik";
 import { useRouter } from "next/navigation";
-import Swal from "sweetalert2";
 
 const EditProfilePage = ({ searchParams }) => {
   const router = useRouter();
 
   const handleSubmit = async (values, actions) => {
-    const res = await fetchUpdateUser({
+    const res = await updateUser({
       accessToken: searchParams?.token,
       id: searchParams?.id,
       name: values.name,
@@ -20,25 +20,15 @@ const EditProfilePage = ({ searchParams }) => {
       email: values.email,
     });
 
-    if (res === 200) {
-      Swal.fire({
-        icon: "success",
-        title: "Actualizacion Exitosa!",
-        text: "Ahora todos tus datos estan actualizados",
-        allowEscapeKey: false,
-        allowOutsideClick: false,
-      }).then((result) => {
-        if (result.isConfirmed) {
-          return router.push("/profile");
-        }
-      });
-    } else {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: res,
-      });
-    }
+    const successResponse = await alertMessage({
+      title: "Actualizacion Exitosa!",
+      text: "Ahora todos tus datos estan actualizados",
+      response: res,
+      code: 200,
+    });
+
+    if (successResponse) router.push("/profile");
+
     actions.resetForm();
   };
 
