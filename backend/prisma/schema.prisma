@@ -32,6 +32,7 @@ model User {
   createdTournaments       Tournament[] @relation("CreatorToTournament")
   participatingTournaments Tournament[] @relation("PlayerToTournament")
   history                  History[]
+  payments                 Payment[]
 }
 
 model Tournament {
@@ -44,6 +45,7 @@ model Tournament {
   creatorId   String
   players     User[]    @relation("PlayerToTournament")
   history     History[]
+  payments    Payment[]
 }
 
 model History {
@@ -54,4 +56,15 @@ model History {
   tournamentId String     @unique
   points       Int
   position     Int
+}
+
+model Payment {
+  id            String     @id @default(uuid())
+  playerId      String
+  player        User       @relation(fields: [playerId], references: [id])
+  tournamentId  String
+  tournament    Tournament @relation(fields: [tournamentId], references: [id])
+  paypalPayerId String
+  paymentId     String
+  createdAt     DateTime   @default(now())
 }
