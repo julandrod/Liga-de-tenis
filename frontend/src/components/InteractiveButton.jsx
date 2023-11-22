@@ -1,11 +1,7 @@
 "use client";
-import {
-  fetchAddPlayerToTournament,
-  fetchDeleteTournament,
-  fetchDeleteUser,
-} from "@/libs/data";
+import { addPlayerToTournament, deleteSingleInfo } from "@/libs/data";
 import { useRouter } from "next/navigation";
-import Swal from "sweetalert2";
+import { alertMessage } from "./AlertMessage";
 
 const InteractiveButton = ({
   text,
@@ -21,14 +17,24 @@ const InteractiveButton = ({
 
   const handleInteraction = async () => {
     let res;
+
     if (isDeleteUser) {
-      res = await fetchDeleteUser({ accessToken, id: userId });
+      res = await deleteSingleInfo({
+        accessToken,
+        id: userId,
+        endpoint: "users",
+      });
     }
     if (isDeleteTournament) {
-      res = await fetchDeleteTournament({ accessToken, id: tournamentId });
+      res = await deleteSingleInfo({
+        accessToken,
+        id: tournamentId,
+        endpoint: "tournaments",
+      });
     }
+
     if (isAddPlayer) {
-      res = await fetchAddPlayerToTournament({
+      res = await addPlayerToTournament({
         accessToken,
         id: tournamentId,
         playerId: userId,
@@ -48,25 +54,14 @@ const InteractiveButton = ({
       }`,
     };
 
-    if (res === 200) {
-      Swal.fire({
-        icon: "success",
-        title: infoAlert.title,
-        text: infoAlert.text,
-        allowEscapeKey: false,
-        allowOutsideClick: false,
-      }).then((result) => {
-        if (result.isConfirmed) {
-          return router.push(routeToReturn);
-        }
-      });
-    } else {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: res,
-      });
-    }
+    const successResponse = await alertMessage({
+      title: infoAlert.title,
+      text: infoAlert.text,
+      response: res,
+      code: 200,
+    });
+
+    if (successResponse) router.push(routeToReturn);
   };
 
   return (

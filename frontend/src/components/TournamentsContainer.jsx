@@ -12,7 +12,7 @@ const TournamentsContainer = ({
   if (!tournaments || tournaments?.length === 0) {
     return (
       <div className="px-8 py-3 mx-6 my-2 text-2xl font-bold">
-        <h1>No hay torneos registrados aun </h1>
+        <h1>No hay torneos registrados</h1>
         <ButtonLink
           text="Volver"
           link={`${isMyProfile ? "/profile" : "/tournaments"}`}

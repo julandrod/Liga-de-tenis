@@ -1,6 +1,5 @@
 "use client";
-// import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-// import { getServerSession } from "next-auth";
+
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 
@@ -19,7 +18,7 @@ const Navbar = () => {
             <>
               {data?.user.role === "ADMIN" ? (
                 <li className="px-3 py-1 hover:animate-bounce">
-                  <Link href="/users">Usuarios</Link>
+                  <Link href="/dashboard">Dashboard</Link>
                 </li>
               ) : null}
               <li className="px-3 py-1 hover:animate-bounce">

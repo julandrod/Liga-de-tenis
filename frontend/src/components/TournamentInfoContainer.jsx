@@ -3,8 +3,9 @@ import ButtonLink from "./ButtonLink";
 import formatDate from "@/libs/formatDate";
 import InteractiveButton from "./InteractiveButton";
 import UserInfoContainer from "./UserInfoContainer";
+import PaymentButton from "./PaymentButton";
 
-const TournamentInfoContainer = async ({
+const TournamentInfoContainer = ({
   title,
   id,
   name,
@@ -35,13 +36,19 @@ const TournamentInfoContainer = async ({
       <div className="flex px-8 py-3 mx-6 my-2 justify-center items-center">
         <ButtonLink link="/tournaments" text="Volver" />
         {!alreadyInTournament ? (
-          <InteractiveButton
-            text="Registrarme"
+          // <InteractiveButton
+          //   text="Registrarme"
+          //   accessToken={accessToken}
+          //   tournamentId={id}
+          //   userId={playerId}
+          //   routeToReturn="/profile"
+          //   isAddPlayer
+          // />
+          <PaymentButton
             accessToken={accessToken}
+            tournamentName={name}
             tournamentId={id}
-            userId={playerId}
-            routeToReturn="/profile"
-            isAddPlayer
+            playerId={playerId}
           />
         ) : null}
         {role === "ADMIN" ? (

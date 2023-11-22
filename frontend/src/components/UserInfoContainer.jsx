@@ -1,7 +1,6 @@
 import React from "react";
 import InfoContainer from "./InfoContainer";
 import ButtonLink from "./ButtonLink";
-import DeleteButton from "./DeleteButton";
 import InteractiveButton from "./InteractiveButton";
 
 const UserInfoContainer = ({

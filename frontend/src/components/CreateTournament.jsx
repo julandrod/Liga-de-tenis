@@ -2,8 +2,8 @@
 import { Form, Formik } from "formik";
 import InputForm from "./InputForm";
 import { useRouter } from "next/navigation";
-import { fetchCreateTournament } from "@/libs/data";
-import Swal from "sweetalert2";
+import { createTournament } from "@/libs/data";
+import { alertMessage } from "./AlertMessage";
 
 const CreateTournament = ({ accessToken, title }) => {
   const router = useRouter();
@@ -12,7 +12,7 @@ const CreateTournament = ({ accessToken, title }) => {
     const isoStartDate = new Date(values.startDate).toISOString();
     const isoEndDate = new Date(values.endDate).toISOString();
 
-    const res = await fetchCreateTournament({
+    const res = await createTournament({
       accessToken,
       name: values.name,
       description: values.description,
@@ -20,25 +20,16 @@ const CreateTournament = ({ accessToken, title }) => {
       endDate: isoEndDate,
     });
 
-    if (res === 201) {
-      Swal.fire({
-        icon: "success",
-        title: "Torneo creado!",
-        text: "El nuevo torneo ha sido creado",
-        allowEscapeKey: false,
-        allowOutsideClick: false,
-      }).then((result) => {
-        if (result.isConfirmed) {
-          return router.push("/tournaments");
-        }
-      });
-    } else {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: res,
-      });
-    }
+    const successResponse = await alertMessage({
+      title: "Torneo creado!",
+      text: "El nuevo torneo ha sido creado",
+      response: res,
+      code: 201,
+    });
+
+    if (successResponse) router.push("/tournaments");
+
+    actions.resetForm();
   };
 
   return (
