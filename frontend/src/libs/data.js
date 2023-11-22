@@ -32,7 +32,48 @@ export const fetchMyInfo = async ({ accessToken }) => {
   }
 };
 
-export const fetchUpdateUser = async ({
+export const fetchInfo = async ({ accessToken, page, endpoint }) => {
+  try {
+    const { data } = await instance.get(`/${endpoint}?page=${page}`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    return data;
+  } catch (error) {
+    return error.response.data.error;
+  }
+};
+
+export const fetchSingleInfo = async ({ accessToken, id, endpoint }) => {
+  try {
+    const { data } = await instance.get(`/${endpoint}/${id}`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+    return data;
+  } catch (error) {
+    return error.response.data.error;
+  }
+};
+
+export const deleteSingleInfo = async ({ accessToken, id, endpoint }) => {
+  try {
+    const { data } = await instance.delete(`/${endpoint}/${id}`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+    return data.code;
+  } catch (error) {
+    return error.response.data.error;
+  }
+};
+
+export const updateUser = async ({
   accessToken,
   id,
   name,
@@ -64,63 +105,7 @@ export const fetchUpdateUser = async ({
   }
 };
 
-export const fetchUsers = async ({ accessToken, page }) => {
-  try {
-    const { data } = await instance.get(`/users?page=${page}`, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
-
-    return data.body;
-  } catch (error) {
-    return error.response.data.error;
-  }
-};
-
-export const fetchSingleUser = async ({ accessToken, id }) => {
-  try {
-    const { data } = await instance.get(`/users/${id}`, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
-
-    return data.body;
-  } catch (error) {
-    return error.response.data.error;
-  }
-};
-
-export const fetchDeleteUser = async ({ accessToken, id }) => {
-  try {
-    const { data } = await instance.delete(`/users/${id}`, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
-
-    return data.code;
-  } catch (error) {
-    return error.response.data.error;
-  }
-};
-
-export const fetchTournaments = async ({ accessToken, page }) => {
-  try {
-    const { data } = await instance.get(`/tournaments?page=${page}`, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
-
-    return data.body;
-  } catch (error) {
-    return error.response.data.error;
-  }
-};
-
-export const fetchCreateTournament = async ({
+export const createTournament = async ({
   accessToken,
   name,
   description,
@@ -149,39 +134,7 @@ export const fetchCreateTournament = async ({
   }
 };
 
-export const fetchDeleteTournament = async ({ accessToken, id }) => {
-  try {
-    const { data } = await instance.delete(`/tournaments/${id}`, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
-
-    return data.code;
-  } catch (error) {
-    return error.response.data.error;
-  }
-};
-
-export const fetchSingleTournament = async ({ accessToken, id }) => {
-  try {
-    const { data } = await instance.get(`/tournaments/${id}`, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
-
-    return data.body;
-  } catch (error) {
-    return error.response.data.error;
-  }
-};
-
-export const fetchAddPlayerToTournament = async ({
-  accessToken,
-  id,
-  playerId,
-}) => {
+export const addPlayerToTournament = async ({ accessToken, id, playerId }) => {
   try {
     const { data } = await instance.post(
       `/tournaments/addplayer/${id}`,
@@ -196,6 +149,50 @@ export const fetchAddPlayerToTournament = async ({
     );
 
     return data.code;
+  } catch (error) {
+    return error.response.data.error;
+  }
+};
+
+export const createOrderPayment = async ({ accessToken, tournamentName }) => {
+  try {
+    const { data } = await instance.post("/checkout", tournamentName, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    return data.body.orderId;
+  } catch (error) {
+    return error.response.data.error;
+  }
+};
+
+export const successOrder = async ({
+  accessToken,
+  playerId,
+  tournamentId,
+  paypalPayerId,
+  paymentId,
+  orderId,
+}) => {
+  try {
+    const { data } = await instance.post(
+      "/checkout/success",
+      {
+        playerId,
+        tournamentId,
+        paypalPayerId,
+        paymentId,
+        orderId,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+
+    return data;
   } catch (error) {
     return error.response.data.error;
   }
