@@ -3,7 +3,6 @@ import ButtonLink from "@/components/ButtonLink";
 import PaymentsContainer from "@/components/PaymentsContainer";
 import { fetchInfo } from "@/libs/data";
 import { getServerSession } from "next-auth";
-clear
 
 const PaymentsPage = async ({ searchParams }) => {
   const page = searchParams?.page || 1;
