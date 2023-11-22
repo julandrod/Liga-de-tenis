@@ -1,31 +1,30 @@
+/**
+ * Validate the schemas built in express-validator
+ * @param {Schema} schema schema built with express-validator
+ * @returns response with all errors if are any or pass to the next process if there is no errors
+ *
+ * @example
+ * router.post("/users", validatorMiddleware(testSchema), registerController)
+ */
+const { checkSchema, validationResult } = require("express-validator");
 
-// /**
-//  * Validate the schemas built in express-validator
-//  * @param {Schema} schema schema built with express-validator
-//  * @returns response with all errors if are any or pass to the next process if there is no errors
-//  *
-//  * @example
-//  * router.post("/users", validatorMiddleware(testSchema), registerController)
-//  */
-// const validatorMiddleware = (schema) => {
-//   const validations = checkSchema(schema);
+const validatorMiddleware = (schema) => {
+  const validations = checkSchema(schema);
 
-//   return async (req, res, next) => {
-//     await Promise.all(validations.map((validation) => validation.run(req)));
+  return async (req, res, next) => {
+    await Promise.all(validations.map((validation) => validation.run(req)));
 
-//     const errors = validationResult(req);
-//     console.log(errors);
+    const errors = validationResult(req);
 
-//     if (!errors.isEmpty()) {
-//       const error = errors
-//         .array()
-//         .map((item) => item.msg)
-//         .join(", ");
+    if (errors.isEmpty()) return next();
 
-//       return res.status(400).json({ error });
-//     }
-//     next();
-//   };
-// };
+    const error = errors
+      .array()
+      .map((item) => item.msg)
+      .join(", ");
 
-// export default validatorMiddleware;
+    return res.status(400).json({ error });
+  };
+};
+
+module.exports = validatorMiddleware;
