@@ -3,6 +3,20 @@ import { addPlayerToTournament, deleteSingleInfo } from "@/libs/data";
 import { useRouter } from "next/navigation";
 import { alertMessage } from "./AlertMessage";
 
+/**
+ * Render an interactive button component, can be used to delete users or tournaments and add player to tournaments
+ * @param {Object} props
+ * @param {String} props.text The text to display on the button
+ * @param {String} props.userId The user id
+ * @param {String} props.tournamentId The tournament id 
+ * @param {String} props.accessToken Access token to authenticate the request
+ * @param {String} props.routeToReturn The route to return after the interaction
+ * @param {Boolean} props.isDeleteUser Whether the button is for deleting a user
+ * @param {Boolean} props.isDeleteTournament Whether the button is for deleting a tournament
+ * @param {Boolean} props.isAddPlayer Whether the button is for adding a player to a tournament
+ * @returns {JSX.Element} The interactive button component
+ */
+
 const InteractiveButton = ({
   text,
   userId,

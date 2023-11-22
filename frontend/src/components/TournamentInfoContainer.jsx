@@ -2,8 +2,24 @@ import InfoContainer from "./InfoContainer";
 import ButtonLink from "./ButtonLink";
 import formatDate from "@/libs/formatDate";
 import InteractiveButton from "./InteractiveButton";
-import UserInfoContainer from "./UserInfoContainer";
 import PaymentButton from "./PaymentButton";
+
+/**
+ * Render a container component with the information of a tournament
+ * @param {Object} props
+ * @param {String} props.title Title of the container
+ * @param {String} props.id Id of the tournament
+ * @param {String} props.name Name of the tournament
+ * @param {String} props.description Description of the tournament
+ * @param {Date} props.startDate Start date of the tournament
+ * @param {Date} props.endDate End date of the tournament
+ * @param {Number} props.totalPlayers Total number of players in the tournament
+ * @param {String} props.accessToken Access token of the user
+ * @param {String} props.playerId Id of the player
+ * @param {Boolean} props.alreadyInTournament Whether the player is already in the tournament
+ * @param {String} props.role Role of the user
+ * @returns Container component
+ */
 
 const TournamentInfoContainer = ({
   title,
@@ -36,14 +52,6 @@ const TournamentInfoContainer = ({
       <div className="flex px-8 py-3 mx-6 my-2 justify-center items-center">
         <ButtonLink link="/tournaments" text="Volver" />
         {!alreadyInTournament ? (
-          // <InteractiveButton
-          //   text="Registrarme"
-          //   accessToken={accessToken}
-          //   tournamentId={id}
-          //   userId={playerId}
-          //   routeToReturn="/profile"
-          //   isAddPlayer
-          // />
           <PaymentButton
             accessToken={accessToken}
             tournamentName={name}

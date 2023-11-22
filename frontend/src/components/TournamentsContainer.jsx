@@ -2,6 +2,17 @@ import CardTournament from "@/components/CardTournament";
 import Pagination from "./Pagination";
 import ButtonLink from "./ButtonLink";
 
+/**
+ * Render a container component with a title and a list of tournaments
+ * @param {Object} props
+ * @param {String} props.title Title of the container 
+ * @param {Object[]} props.tournaments List of tournaments
+ * @param {Number} props.totalCount Total count of tournaments
+ * @param {Number} props.pageSize Page size of the pagination
+ * @param {Boolean} props.isMyProfile Whether the container is for the current user's profile
+ * @returns Container component
+ */
+
 const TournamentsContainer = ({
   title,
   tournaments,

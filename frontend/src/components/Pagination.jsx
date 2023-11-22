@@ -3,6 +3,14 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import ButtonLink from "./ButtonLink";
 
+/**
+ * Render a component to control the pagination of a list of items
+ * @param {Object} props
+ * @param {Number} props.totalCount - Total count of items
+ * @param {Number} props.pageSize - Number of items per page 
+ * @returns Pagination control component
+ */
+
 const Pagination = ({ totalCount, pageSize }) => {
   const searchParams = useSearchParams();
   const { replace } = useRouter();

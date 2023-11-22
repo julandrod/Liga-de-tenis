@@ -3,6 +3,22 @@ import InfoContainer from "./InfoContainer";
 import ButtonLink from "./ButtonLink";
 import InteractiveButton from "./InteractiveButton";
 
+/**
+ * Render a container component with the information of a user
+ * @param {Object} props
+ * @param {String} props.title Title of the container
+ * @param {String} props.id Id of the user
+ * @param {String} props.accessToken Access token of the user
+ * @param {String} props.name Name of the user
+ * @param {String} props.lastName Last name of the user
+ * @param {String} props.email Email of the user
+ * @param {Number} props.age Age of the user
+ * @param {String} props.gender Gender of the user
+ * @param {String} props.role Role of the user
+ * @param {Boolean} props.isMyProfile Whether the container is for the current user's profile 
+ * @returns Container component
+ */
+
 const UserInfoContainer = ({
   title,
   id,

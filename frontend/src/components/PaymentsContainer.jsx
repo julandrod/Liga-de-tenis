@@ -1,7 +1,16 @@
-import React from "react";
 import ButtonLink from "./ButtonLink";
 import Pagination from "./Pagination";
 import formatDate from "@/libs/formatDate";
+
+/**
+ * Render a container component with a title and a list of payments
+ * @param {Object} props
+ * @param {String} props.title The title of the container
+ * @param {Object[]} props.payments The list of payments to render
+ * @param {Number} props.totalCount The total number of payments
+ * @param {Number} props.pageSize The number of payments per page 
+ * @returns Container component
+ */
 
 const PaymentsContainer = ({ title, payments, totalCount, pageSize }) => {
   if (!payments || payments?.length === 0) {

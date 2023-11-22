@@ -1,6 +1,15 @@
-import React from "react";
 import ButtonLink from "./ButtonLink";
 import Pagination from "./Pagination";
+
+/**
+ * Render a container component with a title, users, and pagination.
+ * @param {Object} props
+ * @param {String} props.title The title to display
+ * @param {Object[]} props.users An array of users
+ * @param {Number} props.totalCount The total number of users
+ * @param {Number} props.pageSize The number of users per page 
+ * @returns Container component
+ */
 
 const UsersContainer = ({ title, users, totalCount, pageSize }) => {
   if (!users || users?.length === 0) {

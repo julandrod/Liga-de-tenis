@@ -1,4 +1,10 @@
-import React from "react";
+/**
+ * Render a container (label and text) to show info
+ * @param {Object} props
+ * @param {String} props.label Label to show 
+ * @param {String} props.info Info to show 
+ * @returns Custom container with label and text
+ */
 
 const InfoContainer = ({ label, info }) => {
   return (

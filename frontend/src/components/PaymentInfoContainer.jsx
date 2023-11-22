@@ -3,6 +3,21 @@ import ButtonLink from "./ButtonLink";
 import InfoContainer from "./InfoContainer";
 import formatDate from "@/libs/formatDate";
 
+/**
+ * Container component to show all the payment info
+ * @param {Object} props
+ * @param {String} props.title Title of the container
+ * @param {String} props.playerId Id of the player
+ * @param {String} props.playerName Name of the player
+ * @param {String} props.playerEmail Email of the player
+ * @param {String} props.tournamentId Id of the tournament
+ * @param {String} props.tournamentName Name of the tournament
+ * @param {String} props.paypalPayerId Id of the paypal user
+ * @param {String} props.paymentId Id of the payment
+ * @param {Date} props.createdAt Date of the payment
+ * @returns Container component
+ */
+
 const PaymentInfoContainer = ({
   title,
   playerId,

@@ -1,5 +1,13 @@
-import React from "react";
 import ButtonLink from "./ButtonLink";
+
+/**
+ * Render a custom card to show info and buttons
+ * @param {Object} props
+ * @param {String} props.title Title of the card 
+ * @param {String} props.data Data of the card 
+ * @param {Array} props.buttons Buttons of the card 
+ * @returns Custom component card
+ */
 
 const InfoCard = ({ title, data, buttons }) => {
   return (

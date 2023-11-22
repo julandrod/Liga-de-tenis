@@ -1,5 +1,15 @@
 import Link from "next/link";
 
+/**
+ * Render a custom button component, can be a link button or onClick button
+ * @param {Object}    props
+ * @param {String}    props.link      The link to navigate to
+ * @param {String}    props.text      Text to show in the button
+ * @param {Function}  props.onClick   The function to call when the button is clicked
+ * @param {Boolean}   props.disabled  Whether the button is disabled
+ * @returns Custom button component
+ */
+
 const ButtonLink = ({ link, text, onClick, disabled }) => {
   if (!link) {
     return (

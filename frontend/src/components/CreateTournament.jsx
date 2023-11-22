@@ -5,6 +5,14 @@ import { useRouter } from "next/navigation";
 import { createTournament } from "@/libs/data";
 import { alertMessage } from "./AlertMessage";
 
+/**
+ * Render a custom form using Formik to create a tournament
+ * @param {Object} props
+ * @param {String} props.accessToken Access token to authenticate the request 
+ * @param {String} props.title Title of the form 
+ * @returns Custom Formik form
+ */
+
 const CreateTournament = ({ accessToken, title }) => {
   const router = useRouter();
 

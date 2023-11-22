@@ -9,6 +9,16 @@ import {
 } from "@/libs/data";
 import { alertMessage } from "./AlertMessage";
 
+/**
+ * Paypal button component with the logic to create orders
+ * @param {Object} props 
+ * @param {String} props.accessToken Access token to authenticate the request
+ * @param {String} props.tournamentName The tournament name
+ * @param {String} props.tournamentId The tournament id
+ * @param {String} props.playerId The player id
+ * @returns Paypal button 
+ */
+
 const PaymentButton = ({ accessToken, tournamentName, tournamentId, playerId }) => {
   const router = useRouter();
 

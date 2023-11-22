@@ -1,9 +1,10 @@
 import { useField } from "formik";
 
 /**
- * Component that render an input form, with the useField hook can validate some input values
- * @param {*} param0 
- * @returns 
+ * Component that render an input form to be use with a custom form, with the useField hook can validate some input values
+ * @param {Object} props Props from Formik to control the input
+ * @param {String} props.labelText Label text to show in the input form
+ * @returns Custom input form
  */
 const InputForm = ({ labelText, ...props }) => {
   // Hook from formik to use his properties

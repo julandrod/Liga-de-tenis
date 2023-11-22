@@ -1,7 +1,17 @@
 import formatDate from "@/libs/formatDate";
-import Link from "next/link";
 import React from "react";
 import ButtonLink from "./ButtonLink";
+
+/**
+ * Render a custom card component for tournaments
+ * @param {Object} props 
+ * @param {String} props.id Id of the tournament
+ * @param {String} props.name Name of the tournament
+ * @param {String} props.description Description of the tournament 
+ * @param {Date} props.startDate Start date of the tournament 
+ * @param {Date} props.endDate End date of the tournament 
+ * @returns Custom card component
+ */
 
 const CardTournament = ({ id, name, description, startDate, endDate }) => {
   return (
